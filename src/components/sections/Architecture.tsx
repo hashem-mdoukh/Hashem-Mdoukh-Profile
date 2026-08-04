@@ -1,0 +1,182 @@
+"use client";
+
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useTranslations } from "next-intl";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { MiniCode } from "@/components/ui/MiniCode";
+import { tree, patternMeta, type PatternKey } from "@/components/sections/architectureData";
+
+export function Architecture() {
+  const t = useTranslations("architecture");
+  const [selected, setSelected] = useState<PatternKey>("feature");
+  const meta = patternMeta[selected];
+
+  return (
+    <section id="architecture" className="scroll-mt-20 px-5 py-20">
+      <SectionHeading no={t("no")}>{t("title")}</SectionHeading>
+      <p className="-mt-4 mb-10 max-w-2xl text-pretty text-muted">{t("subtitle")}</p>
+
+      <div className="overflow-hidden rounded-2xl border border-line bg-[#0d1412] shadow-xl shadow-black/20">
+        {/* IDE chrome */}
+        <div className="flex items-center gap-2 border-b border-white/5 px-4 py-3">
+          <span className="size-2.5 rounded-full bg-white/15" aria-hidden />
+          <span className="size-2.5 rounded-full bg-white/15" aria-hidden />
+          <span className="size-2.5 rounded-full bg-brand-500/70" aria-hidden />
+          <span className="ms-3 font-mono text-[11px] uppercase tracking-widest text-[#7d938b]">
+            {t("explorer")}
+          </span>
+        </div>
+
+        <div className="grid lg:grid-cols-5">
+          {/* file tree */}
+          <motion.ul
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ staggerChildren: 0.04 }}
+            className="border-b border-white/5 p-3 font-mono text-[13px] leading-relaxed lg:col-span-2 lg:border-b-0 lg:border-e"
+          >
+            {tree.map((row) => {
+              const isSelectable = !!row.pattern;
+              const isSelected = row.pattern === selected;
+              return (
+                <motion.li
+                  key={`${row.depth}-${row.label}`}
+                  variants={{
+                    hidden: { opacity: 0, x: -8 },
+                    show: { opacity: 1, x: 0, transition: { duration: 0.3 } },
+                  }}
+                >
+                  <button
+                    type="button"
+                    disabled={!isSelectable}
+                    aria-pressed={isSelectable ? isSelected : undefined}
+                    onClick={() => row.pattern && setSelected(row.pattern)}
+                    style={{ paddingInlineStart: `${row.depth * 16 + 10}px` }}
+                    className={`group/row flex w-full items-center gap-2 rounded-md py-1 pe-2 text-start transition-colors ${
+                      isSelected
+                        ? "bg-white/5 text-brand-300"
+                        : isSelectable
+                          ? "cursor-pointer text-[#c9d8d3] hover:bg-white/5 hover:text-brand-300"
+                          : "text-[#5d7269]"
+                    }`}
+                  >
+                    <span aria-hidden className="text-[#5d7269]">
+                      {row.kind === "folder" ? <FolderIcon open={isSelected} /> : <FileIcon />}
+                    </span>
+                    <span>
+                      {row.label}
+                      {row.kind === "folder" ? "/" : ""}
+                    </span>
+                    {isSelectable && (
+                      <span
+                        aria-hidden
+                        className={`ms-auto size-1.5 shrink-0 rounded-full transition-colors ${
+                          isSelected ? "bg-brand-400" : "bg-brand-500/40 group-hover/row:bg-brand-400"
+                        }`}
+                      />
+                    )}
+                  </button>
+                </motion.li>
+              );
+            })}
+          </motion.ul>
+
+          {/* pattern inspector */}
+          <div className="relative p-6 lg:col-span-3 lg:min-h-[420px]">
+            <p className="mb-4 font-mono text-[10px] uppercase tracking-widest text-[#5d7269]">
+              {t("inspector")}
+            </p>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={selected}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.18 }}
+              >
+                <h3 className="text-lg font-bold text-[#f0f5f3]">
+                  {t(`items.${selected}.title`)}
+                </h3>
+                <p className="mt-1 font-mono text-sm text-brand-300">
+                  {t(`items.${selected}.claim`)}
+                </p>
+                <p className="mt-3 text-sm leading-relaxed text-[#93a8a0]">
+                  {t(`items.${selected}.desc`)}
+                </p>
+
+                <div className="mt-4">
+                  <MiniCode file={meta.file} code={meta.code} />
+                </div>
+
+                <ul className="mt-4 flex flex-wrap gap-2">
+                  {meta.chips.map((chip) => (
+                    <li
+                      key={chip}
+                      className="rounded-full bg-brand-500/10 px-3 py-1 font-mono text-xs font-medium text-brand-300"
+                    >
+                      {chip}
+                    </li>
+                  ))}
+                </ul>
+
+                <a
+                  href="#projects"
+                  className="group/link mt-5 inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-brand-300 transition-opacity hover:opacity-80"
+                >
+                  {t("seeProjects")}
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+                    className="transition-transform motion-reduce:transition-none group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
+                    aria-hidden>
+                    <path d="M7 17 17 7M8 7h9v9" />
+                  </svg>
+                </a>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </div>
+      </div>
+
+      {/* always-visible keyword layer for skimmers */}
+      <motion.dl
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="mt-6 space-y-1.5 rounded-2xl border border-line bg-surface/60 p-6 font-mono text-sm"
+      >
+        {(t.raw("index") as { label: string; items: string }[]).map((line) => (
+          <div key={line.label} className="flex flex-wrap gap-x-3">
+            <dt className="w-28 shrink-0 font-semibold text-accent">{line.label}</dt>
+            <dd className="text-muted">{line.items}</dd>
+          </div>
+        ))}
+      </motion.dl>
+    </section>
+  );
+}
+
+function FolderIcon({ open }: { open: boolean }) {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      {open ? (
+        <path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2" />
+      ) : (
+        <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" />
+      )}
+    </svg>
+  );
+}
+
+function FileIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+      <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+    </svg>
+  );
+}

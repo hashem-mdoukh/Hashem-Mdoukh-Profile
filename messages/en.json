@@ -1,0 +1,212 @@
+{
+  "meta": {
+    "title": "Hashem Mdoukh — Front-End Engineer · React & Next.js",
+    "description": "Front-End Engineer building fast, scalable, accessible web applications with React, Next.js & TypeScript. Open to remote & international opportunities."
+  },
+  "nav": {
+    "about": "About",
+    "architecture": "Architecture",
+    "experience": "Experience",
+    "projects": "Projects",
+    "contact": "Contact",
+    "resume": "Résumé",
+    "github": "GitHub"
+  },
+  "hero": {
+    "terminalTitle": "hashem@gaza — zsh",
+    "prompt": "❯",
+    "cmd": "npx hashem@latest",
+    "name": "Hashem Mdoukh",
+    "role": "Front-End Engineer — React · Next.js · TypeScript",
+    "tagline": "Fast, scalable, accessible web apps — feature-based architectures & design systems.",
+    "statusKey": "status",
+    "statusVal": "open to remote & international roles",
+    "locationKey": "location",
+    "locationVal": "Gaza, Palestine (UTC+2/3) · async-first",
+    "linksKey": "links",
+    "ctaPrimary": "./view-projects",
+    "ctaSecondary": "./contact-me",
+    "ctaResume": "resume.pdf",
+    "skip": "click to skip ↵"
+  },
+  "about": {
+    "no": "04",
+    "title": "About me",
+    "p1": "I'm Hashem — a front-end engineer who builds fast, accessible interfaces with <hl>React</hl>, <hl>Next.js</hl> and <hl>TypeScript</hl>. I care about the part of software that outlives the sprint: <hl>feature-based architectures</hl>, <hl>design systems</hl> and <hl>monorepos</hl> that stay maintainable long after the demo.",
+    "p2": "I work <hl>async-first</hl> — written updates, PRs with context, and documentation treated as part of the job, not an afterthought. I work from Gaza, Palestine, and build for teams everywhere.",
+    "p3": "Away from the keyboard I'm usually deep in an engineering write-up or refining this site — currently exploring advanced React patterns and type-safe routing.",
+    "overlapTitle": "Timezone overlap — my day vs. yours",
+    "overlapCaption": "Full-day overlap with European teams · 3h+ with US East, every day",
+    "zones": [
+      { "city": "Gaza — me", "start": 9, "end": 19, "me": true },
+      { "city": "Berlin · 9–17 CEST", "start": 10, "end": 18 },
+      { "city": "London · 9–17 BST", "start": 11, "end": 19 },
+      { "city": "New York · 9–17 EDT", "start": 16, "end": 24 }
+    ]
+  },
+  "architecture": {
+    "no": "02",
+    "title": "How I engineer",
+    "subtitle": "Feature-based monorepos, design systems, and scalable React. Explore the architecture — every annotated node is a pattern I work with.",
+    "explorer": "EXPLORER · hashem-monorepo",
+    "inspector": "PATTERN INSPECTOR",
+    "seeProjects": "See it applied in my projects",
+    "indexTitle": "Stack index",
+    "index": [
+      { "label": "Core", "items": "React 19 · Next.js 15 · TypeScript · Tailwind CSS v4" },
+      { "label": "Architecture", "items": "Turborepo · pnpm workspaces · Design Systems · Feature-based modules" },
+      { "label": "Data", "items": "TanStack Query · TanStack Router · REST APIs · DTO mapping" },
+      { "label": "Backend", "items": "Node.js · Express.js · MongoDB · Mongoose" },
+      { "label": "Also", "items": "Angular · MUI · Mantine UI · Jotai · CSS Modules · Vite · Git" }
+    ],
+    "items": {
+      "monorepo": {
+        "title": "Monorepo — Turborepo + pnpm",
+        "claim": "One repo, many apps, zero duplicated code.",
+        "desc": "Turborepo's task graph builds packages in dependency order with caching, while pnpm workspaces link internal packages without publishing. Shared config and UI ship to every app from a single source of truth."
+      },
+      "designSystem": {
+        "title": "Shared Design System",
+        "claim": "UI primitives every app consumes, never copies.",
+        "desc": "A dedicated package of component primitives, CSS custom properties and typography tokens. Change a token once and every application in the workspace updates consistently."
+      },
+      "flags": {
+        "title": "Context-based Feature Flags",
+        "claim": "Ship features dark, release them remotely.",
+        "desc": "A Context-driven flag system that enables remote-controlled rollouts, A/B tests and gradual releases — no redeploy needed to turn a feature on or off."
+      },
+      "feature": {
+        "title": "Feature-based Architecture",
+        "claim": "Each domain owns its views, hooks, APIs and services.",
+        "desc": "Features are isolated modules with strict boundaries — nothing reaches into another feature's internals. New domains scale the codebase horizontally instead of deepening the tangle."
+      },
+      "components": {
+        "title": "Compound & Headless Components",
+        "claim": "Logic and rendering, decoupled.",
+        "desc": "Compound components share state implicitly through Context for composable APIs; headless hooks own the behaviour and let each consumer control the markup completely."
+      },
+      "hooks": {
+        "title": "Server State — TanStack Query",
+        "claim": "Caching, deduplication and sync, engineered.",
+        "desc": "Query hooks with tuned stale/GC times, background refetching, optimistic mutations and precise cache invalidation — server state treated as its own architectural layer."
+      },
+      "services": {
+        "title": "Dependency Inversion (DIP)",
+        "claim": "UI depends on interfaces, never on APIs.",
+        "desc": "Views talk to TypeScript interfaces; concrete API clients implement them. Swapping a backend, mocking in tests, or migrating transports never touches the component layer."
+      },
+      "mappers": {
+        "title": "DTO → Domain Mapping",
+        "claim": "Transport types stop at the boundary.",
+        "desc": "Every API payload is mapped into a clean domain model at the edge. The rest of the app works with stable, intention-revealing types the backend can't accidentally break."
+      }
+    }
+  },
+  "experience": {
+    "no": "03",
+    "title": "Experience & training",
+    "badges": {
+      "professional": "Professional",
+      "training": "Intensive training"
+    },
+    "resume": "View full résumé",
+    "items": [
+      {
+        "org": "Advanced React Program",
+        "role": "Advanced React Developer Trainee",
+        "period": "Jan — Mar 2026",
+        "badge": "training",
+        "summary": "Engineered scalable React applications on a feature-based modular architecture inside a pnpm + Turborepo monorepo with shared Design System packages. Implemented fully type-safe routing with TanStack Router, server-state management with TanStack Query, and advanced patterns — Compound & Headless components, DIP with DTO mappers, and a Context-based feature-flag system for gradual rollouts.",
+        "tags": ["React", "TypeScript", "TanStack Query", "TanStack Router", "Turborepo", "pnpm"]
+      },
+      {
+        "org": "Zakey Tech",
+        "role": "Full-Stack Developer Trainee",
+        "period": "Sep 2025 — Jan 2026",
+        "badge": "training",
+        "summary": "Built and shipped responsive full-stack apps with the Next.js App Router, Tailwind CSS v4 and MUI, backed by Node.js/Express REST services and MongoDB models via Mongoose. Normalized complex JSON datasets into clean UI components and delivered analytics dashboards that gave end users clear operational insight.",
+        "tags": ["Next.js", "Node.js", "Express", "MongoDB", "Tailwind v4", "MUI"]
+      },
+      {
+        "org": "Kumrat Al-Saada",
+        "role": "Front-End Developer (Angular)",
+        "period": "Apr — Jul 2025",
+        "badge": "professional",
+        "summary": "Architected an end-to-end notification system and redesigned multiple screens to a unified UX spec, defining an app-wide color and design-token system. Tuned change detection and refactored components to cut rendering overhead, and ran systematic QA on every feature before release.",
+        "tags": ["Angular", "TypeScript", "Design Tokens", "Performance", "QA"]
+      }
+    ]
+  },
+  "education": {
+    "title": "Education",
+    "degree": "B.Sc. Information and Communication Technology",
+    "period": "Sep 2020 – Apr 2025"
+  },
+  "languages": {
+    "title": "Languages",
+    "items": [
+      { "name": "Arabic", "level": "Native / Bilingual" },
+      { "name": "English", "level": "Professional Working" }
+    ]
+  },
+  "projects": {
+    "no": "01",
+    "title": "Featured projects",
+    "eyebrow": "Featured project",
+    "live": "Live demo",
+    "code": "Code",
+    "more": "More on GitHub",
+    "items": {
+      "rickmorty": {
+        "name": "Rick & Morty Character Explorer",
+        "desc": "A character browser over the Rick and Morty REST API with real-time search, filtering and pagination. Custom TanStack Query hooks with tuned stale/GC times deduplicate requests, and typed error boundaries recover with one-click retry — all on a fully typed, generic API layer."
+      },
+      "weather": {
+        "name": "Weather App",
+        "desc": "A live weather dashboard on Next.js 15 and React 19. TanStack Query handles server state while Jotai atoms drive client state; a dedicated utility layer converts units and switches day/night iconography. Deployed on Vercel."
+      },
+      "transportation": {
+        "name": "Amana Transportation",
+        "desc": "A public-transport tracker rendering live bus positions and routes on interactive Leaflet maps. Backed by a Next.js API route, typed domain models and dynamic per-bus detail pages. Deployed on Vercel."
+      },
+      "financial": {
+        "name": "Amana Financial",
+        "desc": "A fundraising platform connecting donors with education, agriculture and small-business causes across the Middle East. A typed service layer consumes a live REST API to render category-coloured cause cards with funding progress and urgency indicators."
+      }
+    }
+  },
+  "contact": {
+    "no": "05",
+    "kicker": "What's next?",
+    "title": "Let's build something.",
+    "body": "I'm looking for a remote front-end role with a team that cares about the details. My inbox is open — whether you have a role, a project, or just a question about something I built. Based in Gaza (UTC+3) — full-day overlap with European teams, mornings with US East.",
+    "email": "mr.mdoukh@gmail.com",
+    "copyHint": "Click to copy",
+    "copied": "Copied to clipboard",
+    "mailApp": "open in mail app",
+    "mailSubject": "Hi Hashem — saw your portfolio",
+    "formKicker": "or drop a message right here",
+    "formName": "name",
+    "formNamePlaceholder": "Jane Doe",
+    "formEmail": "email",
+    "formEmailPlaceholder": "you@company.com",
+    "formMessage": "message",
+    "formMessagePlaceholder": "We're hiring a front-end engineer and your work caught our eye…",
+    "formSend": "./send-message",
+    "formSending": "sending…",
+    "formSuccessTitle": "Message sent.",
+    "formSuccessBody": "Thanks for reaching out — I'll reply within 24 hours.",
+    "formError": "Something went wrong sending that. Email me directly:",
+    "statusOpen": "Open to remote roles",
+    "statusLocation": "Gaza, Palestine",
+    "statusReply": "replies < 24h",
+    "localTime": "local",
+    "cv": "Résumé"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "note": "Designed & built by Hashem Mdoukh — Next.js 15 · Tailwind v4 · Framer Motion",
+    "place": "Built in Gaza, Palestine 🇵🇸"
+  },
+  "theme": { "toggle": "Toggle theme", "light": "Light", "dark": "Dark" }
+}

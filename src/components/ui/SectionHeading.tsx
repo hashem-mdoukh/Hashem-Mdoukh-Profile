@@ -23,8 +23,8 @@ export function SectionHeading({
           {no}.
         </span>
       )}
-      <span>{children}</span>
-      <span className="h-px max-w-64 grow bg-line" aria-hidden />
+      <span className="min-w-0">{children}</span>
+      <span className="h-px min-w-0 max-w-64 grow bg-line" aria-hidden />
     </motion.h2>
   );
 }

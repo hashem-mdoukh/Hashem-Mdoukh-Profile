@@ -38,11 +38,14 @@ export function MiniCode({ file, code }: { file?: string; code: string }) {
   return (
     <div className="overflow-hidden rounded-lg border border-white/5 bg-black/30">
       {file && (
-        <div className="border-b border-white/5 px-3.5 py-1.5 font-mono text-[11px] text-[#7d938b]">
+        <div
+          className="break-all border-b border-white/5 px-3 py-1.5 font-mono text-[11px] text-[#7d938b] sm:px-3.5"
+          title={file}
+        >
           {file}
         </div>
       )}
-      <pre className="overflow-x-auto p-3.5 font-mono text-xs leading-relaxed text-[#d6e2de]">
+      <pre className="whitespace-pre-wrap break-words p-3 font-mono text-[11px] leading-relaxed text-[#d6e2de] sm:p-3.5 sm:text-xs">
         <code>{highlightCode(code)}</code>
       </pre>
     </div>

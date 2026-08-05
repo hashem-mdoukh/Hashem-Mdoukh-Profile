@@ -52,7 +52,7 @@ export function Projects() {
               {/* editor-mockup visual */}
               <motion.div
                 variants={frameReveal(!flipped)}
-                className="w-full lg:w-[60%] shrink-0"
+                className="w-full min-w-0 shrink-0 lg:w-[60%]"
               >
                 <ProjectFrame filename={snippet.filename}>
                   {snippet.code}
@@ -62,7 +62,7 @@ export function Projects() {
               {/* text column, overlapping the visual on desktop */}
               <motion.div
                 variants={textReveal}
-                className={`relative z-10 w-full lg:w-[50%] lg:-ms-24 ${
+                className={`relative z-10 w-full min-w-0 lg:w-[50%] lg:-ms-24 ${
                   flipped ? "lg:-me-24 lg:ms-0 lg:text-start" : "lg:text-end"
                 }`}
               >
@@ -84,7 +84,7 @@ export function Projects() {
                     href={primaryLink}
                     target="_blank"
                     rel="noreferrer"
-                    className="group/link inline-flex items-center gap-2 transition-colors hover:text-accent"
+                    className="group/link inline-flex max-w-full items-center gap-2 break-words transition-colors hover:text-accent"
                   >
                     {t(`items.${project.key}.name`)}
                     <ArrowUpRight />

@@ -46,7 +46,7 @@ export function About() {
         className="grid gap-10 lg:grid-cols-5"
       >
         {/* narrative with inline keyword highlights */}
-        <div className="space-y-5 lg:col-span-3">
+        <div className="min-w-0 space-y-5 lg:col-span-3">
           {(["p1", "p2", "p3"] as const).map((key) => (
             <motion.p
               key={key}
@@ -63,7 +63,7 @@ export function About() {
         </div>
 
         {/* whoami identity card */}
-        <motion.figure variants={fadeUp} className="lg:col-span-2">
+        <motion.figure variants={fadeUp} className="min-w-0 lg:col-span-2">
           <div className="overflow-hidden rounded-2xl border border-line bg-[#0d1412] shadow-xl shadow-black/20">
             <div className="flex items-center gap-2 border-b border-white/5 px-4 py-3">
               <span className="size-2.5 rounded-full bg-white/15" aria-hidden />
@@ -86,10 +86,10 @@ export function About() {
                 <div>
                   <p className="font-semibold text-[#f0f5f3]">Hashem Mdoukh</p>
                   <p className="font-mono text-xs text-[#93a8a0]">$ whoami</p>
-                </div>
+                </div>ok
               </div>
 
-              <pre className="overflow-hidden font-mono text-[11px] leading-relaxed text-[#d6e2de]">
+              <pre className="overflow-x-auto pb-1 font-mono text-[10px] leading-relaxed text-[#d6e2de] sm:text-[11px]">
                 <code>{highlightCode(WHOAMI)}</code>
               </pre>
 

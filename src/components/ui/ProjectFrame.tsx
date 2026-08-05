@@ -51,11 +51,11 @@ export function ProjectFrame({
       />
 
       {/* chrome bar */}
-      <div className="relative flex items-center gap-2 border-b border-white/5 px-4 py-3">
+      <div className="relative flex min-w-0 items-center gap-2 border-b border-white/5 px-4 py-3">
         <span className="size-2.5 rounded-full bg-white/15" aria-hidden />
         <span className="size-2.5 rounded-full bg-white/15" aria-hidden />
         <span className="size-2.5 rounded-full bg-brand-500/70" aria-hidden />
-        <span className="ms-3 rounded-md border border-white/5 bg-white/5 px-2.5 py-0.5 font-mono text-xs text-[#93a8a0]">
+        <span className="min-w-0 truncate ms-3 rounded-md border border-white/5 bg-white/5 px-2.5 py-0.5 font-mono text-xs text-[#93a8a0]">
           {filename}
         </span>
       </div>

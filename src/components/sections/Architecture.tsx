@@ -17,25 +17,29 @@ export function Architecture() {
       <SectionHeading no={t("no")}>{t("title")}</SectionHeading>
       <p className="-mt-4 mb-10 max-w-2xl text-pretty text-muted">{t("subtitle")}</p>
 
-      <div className="overflow-hidden rounded-2xl border border-line bg-[#0d1412] shadow-xl shadow-black/20">
+      <div className="min-w-0 overflow-hidden rounded-2xl border border-line bg-[#0d1412] shadow-xl shadow-black/20">
         {/* IDE chrome */}
-        <div className="flex items-center gap-2 border-b border-white/5 px-4 py-3">
-          <span className="size-2.5 rounded-full bg-white/15" aria-hidden />
-          <span className="size-2.5 rounded-full bg-white/15" aria-hidden />
-          <span className="size-2.5 rounded-full bg-brand-500/70" aria-hidden />
-          <span className="ms-3 font-mono text-[11px] uppercase tracking-widest text-[#7d938b]">
-            {t("explorer")}
+        <div className="flex min-w-0 items-center gap-2 border-b border-white/5 px-3 py-3 sm:px-4">
+          <span className="size-2.5 shrink-0 rounded-full bg-white/15" aria-hidden />
+          <span className="size-2.5 shrink-0 rounded-full bg-white/15" aria-hidden />
+          <span className="size-2.5 shrink-0 rounded-full bg-brand-500/70" aria-hidden />
+          <span
+            className="ms-2 min-w-0 truncate font-mono text-[10px] uppercase tracking-widest text-[#7d938b] sm:ms-3 sm:text-[11px]"
+            title={t("explorer")}
+          >
+            <span className="sm:hidden">Explorer</span>
+            <span className="hidden sm:inline">{t("explorer")}</span>
           </span>
         </div>
 
-        <div className="grid lg:grid-cols-5">
+        <div className="grid min-w-0 lg:grid-cols-5">
           {/* file tree */}
           <motion.ul
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-80px" }}
             transition={{ staggerChildren: 0.04 }}
-            className="border-b border-white/5 p-3 font-mono text-[13px] leading-relaxed lg:col-span-2 lg:border-b-0 lg:border-e"
+            className="min-w-0 border-b border-white/5 p-2.5 font-mono text-xs leading-relaxed sm:p-3 sm:text-[13px] lg:col-span-2 lg:border-b-0 lg:border-e"
           >
             {tree.map((row) => {
               const isSelectable = !!row.pattern;
@@ -62,10 +66,10 @@ export function Architecture() {
                           : "text-[#5d7269]"
                     }`}
                   >
-                    <span aria-hidden className="text-[#5d7269]">
+                    <span aria-hidden className="shrink-0 text-[#5d7269]">
                       {row.kind === "folder" ? <FolderIcon open={isSelected} /> : <FileIcon />}
                     </span>
-                    <span>
+                    <span className="min-w-0 truncate">
                       {row.label}
                       {row.kind === "folder" ? "/" : ""}
                     </span>
@@ -84,7 +88,7 @@ export function Architecture() {
           </motion.ul>
 
           {/* pattern inspector */}
-          <div className="relative p-6 lg:col-span-3 lg:min-h-[420px]">
+          <div className="relative min-w-0 p-4 sm:p-6 lg:col-span-3 lg:min-h-[420px]">
             <p className="mb-4 font-mono text-[10px] uppercase tracking-widest text-[#5d7269]">
               {t("inspector")}
             </p>
@@ -95,18 +99,19 @@ export function Architecture() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.18 }}
+                className="min-w-0"
               >
                 <h3 className="text-lg font-bold text-[#f0f5f3]">
                   {t(`items.${selected}.title`)}
                 </h3>
-                <p className="mt-1 font-mono text-sm text-brand-300">
+                <p className="mt-1 break-words font-mono text-sm text-brand-300">
                   {t(`items.${selected}.claim`)}
                 </p>
                 <p className="mt-3 text-sm leading-relaxed text-[#93a8a0]">
                   {t(`items.${selected}.desc`)}
                 </p>
 
-                <div className="mt-4">
+                <div className="mt-4 min-w-0">
                   <MiniCode file={meta.file} code={meta.code} />
                 </div>
 
@@ -145,12 +150,12 @@ export function Architecture() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="mt-6 space-y-1.5 rounded-2xl border border-line bg-surface/60 p-6 font-mono text-sm"
+        className="mt-6 space-y-1.5 rounded-2xl border border-line bg-surface/60 p-4 font-mono text-sm sm:p-6"
       >
         {(t.raw("index") as { label: string; items: string }[]).map((line) => (
-          <div key={line.label} className="flex flex-wrap gap-x-3">
+          <div key={line.label} className="flex min-w-0 flex-wrap gap-x-3">
             <dt className="w-28 shrink-0 font-semibold text-accent">{line.label}</dt>
-            <dd className="text-muted">{line.items}</dd>
+            <dd className="min-w-0 break-words text-muted">{line.items}</dd>
           </div>
         ))}
       </motion.dl>

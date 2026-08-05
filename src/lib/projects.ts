@@ -1,6 +1,6 @@
 /**
  * Locale-independent project facts (links, stack). Human copy for each
- * project lives in messages/{en,ar}.json under `projects.items[key]`.
+ * project copy lives alongside its rendering component.
  */
 export interface ProjectMeta {
   key: string;

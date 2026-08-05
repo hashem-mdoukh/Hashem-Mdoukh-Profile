@@ -1,7 +1,6 @@
 "use client";
 
 import { motion, type Variants } from "framer-motion";
-import { useTranslations } from "next-intl";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ProjectFrame } from "@/components/ui/ProjectFrame";
 import { projectSnippets } from "@/components/sections/projectSnippets";
@@ -26,11 +25,11 @@ const frameReveal = (fromEnd: boolean): Variants => ({
 });
 
 export function Projects() {
-  const t = useTranslations("projects");
+  const t = { no: "01", title: "Featured projects", eyebrow: "Featured project", live: "Live demo", code: "Code", more: "More on GitHub", items: { rickmorty: { name: "Rick & Morty Character Explorer", desc: "A character browser over the Rick and Morty REST API with real-time search, filtering and pagination." }, weather: { name: "Weather App", desc: "A live weather dashboard on Next.js 15 and React 19, deployed on Vercel." }, transportation: { name: "Amana Transportation", desc: "A public-transport tracker rendering live bus positions and routes on interactive Leaflet maps." }, financial: { name: "Amana Financial", desc: "A fundraising platform connecting donors with education, agriculture and small-business causes across the Middle East." } } };
 
   return (
     <section id="projects" className="scroll-mt-20 px-5 py-20">
-      <SectionHeading no={t("no")}>{t("title")}</SectionHeading>
+      <SectionHeading no={t.no}>{t.title}</SectionHeading>
 
       <div className="group/list space-y-20 lg:space-y-24">
         {projects.map((project, i) => {
@@ -76,7 +75,7 @@ export function Projects() {
                 </span>
 
                 <p className="relative font-mono text-xs uppercase tracking-widest text-accent">
-                  {t("eyebrow")}
+                  {t.eyebrow}
                 </p>
 
                 <h3 className="relative mt-2 text-2xl font-bold text-ink">
@@ -86,14 +85,14 @@ export function Projects() {
                     rel="noreferrer"
                     className="group/link inline-flex max-w-full items-center gap-2 break-words transition-colors hover:text-accent"
                   >
-                    {t(`items.${project.key}.name`)}
+                    {t.items[project.key as keyof typeof t.items].name}
                     <ArrowUpRight />
                   </a>
                 </h3>
 
                 <div className="relative mt-4 rounded-xl border border-line bg-surface p-5 text-start shadow-xl shadow-black/10">
                   <p className="text-sm leading-relaxed text-muted">
-                    {t(`items.${project.key}.desc`)}
+                    {t.items[project.key as keyof typeof t.items].desc}
                   </p>
                 </div>
 
@@ -124,7 +123,7 @@ export function Projects() {
                       rel="noreferrer"
                       className="group/link inline-flex items-center gap-1.5 text-sm font-semibold text-ink transition-colors hover:text-accent"
                     >
-                      {t("live")} <ArrowUpRight />
+                      {t.live} <ArrowUpRight />
                     </a>
                   )}
                   <a
@@ -133,7 +132,7 @@ export function Projects() {
                     rel="noreferrer"
                     className="group/link inline-flex items-center gap-1.5 text-sm font-semibold text-muted transition-colors hover:text-accent"
                   >
-                    <CodeIcon /> {t("code")}
+                    <CodeIcon /> {t.code}
                   </a>
                 </div>
               </motion.div>
@@ -155,7 +154,7 @@ export function Projects() {
           rel="noreferrer"
           className="group/link inline-flex items-center gap-1.5 font-mono text-[10px] text-accent transition-opacity hover:opacity-80"
         >
-          {t("more")} <ArrowUpRight />
+          {t.more} <ArrowUpRight />
         </a>
       </motion.p>
     </section>

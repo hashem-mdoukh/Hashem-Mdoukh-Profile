@@ -1,7 +1,6 @@
 /**
  * Structure for the interactive repo explorer: an idealized
- * feature-based Turborepo. Copy for each pattern lives in
- * messages/en.json under `architecture.items`.
+ * feature-based Turborepo. Pattern copy lives in Architecture.tsx.
  */
 export type PatternKey =
   | "monorepo"

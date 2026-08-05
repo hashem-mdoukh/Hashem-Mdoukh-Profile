@@ -2,15 +2,16 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { useTranslations } from "next-intl";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { MiniCode } from "@/components/ui/MiniCode";
 import { tree, patternMeta, type PatternKey } from "@/components/sections/architectureData";
 
 export function Architecture() {
-  const t = useTranslations("architecture");
+  const copy = { no: "02", title: "How I engineer", subtitle: "Feature-based monorepos, design systems, and scalable React. Explore the architecture — every annotated node is a pattern I work with.", explorer: "EXPLORER · hashem-monorepo", inspector: "PATTERN INSPECTOR", seeProjects: "See it applied in my projects", index: [{ label: "Core", items: "React 19 · Next.js 15 · TypeScript · Tailwind CSS v4" }, { label: "Architecture", items: "Turborepo · pnpm workspaces · Design Systems · Feature-based modules" }, { label: "Data", items: "TanStack Query · TanStack Router · REST APIs · DTO mapping" }, { label: "Backend", items: "Node.js · Express.js · MongoDB · Mongoose" }, { label: "Also", items: "Angular · MUI · Mantine UI · Jotai · CSS Modules · Vite · Git" }], items: { feature: { title: "Feature-based Architecture", claim: "Each domain owns its views, hooks, APIs and services.", desc: "Features are isolated modules with strict boundaries — nothing reaches into another feature's internals. New domains scale the codebase horizontally instead of deepening the tangle." } } };
+  const t: any = Object.assign((key: keyof typeof copy) => copy[key], { raw: (key: keyof typeof copy) => copy[key] });
   const [selected, setSelected] = useState<PatternKey>("feature");
   const meta = patternMeta[selected];
+  const item = ({ monorepo: { title: "Monorepo — Turborepo + pnpm", claim: "One repo, many apps, zero duplicated code.", desc: "Shared packages and cached builds keep multiple applications consistent." }, designSystem: { title: "Shared Design System", claim: "UI primitives every app consumes, never copies.", desc: "Reusable tokens and component primitives keep every application visually consistent." }, flags: { title: "Context-based Feature Flags", claim: "Ship features dark, release them remotely.", desc: "Context-driven flags enable gradual rollouts without redeploying." }, feature: copy.items.feature, components: { title: "Compound & Headless Components", claim: "Logic and rendering, decoupled.", desc: "Composable component APIs separate behaviour from markup." }, hooks: { title: "Server State — TanStack Query", claim: "Caching, deduplication and sync, engineered.", desc: "Query hooks manage server state with precise cache control." }, services: { title: "Dependency Inversion (DIP)", claim: "UI depends on interfaces, never on APIs.", desc: "Stable interfaces make API clients swappable and testable." }, mappers: { title: "DTO → Domain Mapping", claim: "Transport types stop at the boundary.", desc: "API payloads are mapped into stable domain models at the edge." } } as const)[selected];
 
   return (
     <section id="architecture" className="scroll-mt-20 px-5 py-20">
@@ -102,13 +103,13 @@ export function Architecture() {
                 className="min-w-0"
               >
                 <h3 className="text-lg font-bold text-[#f0f5f3]">
-                  {t(`items.${selected}.title`)}
+                  {item.title}
                 </h3>
                 <p className="mt-1 break-words font-mono text-sm text-brand-300">
-                  {t(`items.${selected}.claim`)}
+                  {item.claim}
                 </p>
                 <p className="mt-3 text-sm leading-relaxed text-[#93a8a0]">
-                  {t(`items.${selected}.desc`)}
+                  {item.desc}
                 </p>
 
                 <div className="mt-4 min-w-0">

@@ -2,7 +2,6 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
-import { useTranslations } from "next-intl";
 import { GITHUB_URL, LINKEDIN_URL } from "@/lib/projects";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/SocialIcons";
 
@@ -17,7 +16,7 @@ const line: Variants = {
 };
 
 export function Hero() {
-  const t = useTranslations("hero");
+  const t = (key: string) => ({ terminalTitle: "hashem@gaza — zsh", prompt: "❯", cmd: "npx hashem@latest", name: "Hashem Mdoukh", role: "Front-End Engineer — React · Next.js · TypeScript", tagline: "Fast, scalable, accessible web apps — feature-based architectures & design systems.", statusKey: "status", statusVal: "open to remote & international roles", locationKey: "location", locationVal: "Gaza, Palestine (UTC+2/3) · async-first", linksKey: "links", ctaPrimary: "./view-projects", ctaSecondary: "./contact-me", ctaResume: "resume.pdf", skip: "click to skip ↵" }[key] ?? "");
   const shouldReduce = useReducedMotion();
   const [done, setDone] = useState(false);
 

@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useTranslations } from "next-intl";
 import { fadeUp, stagger } from "@/lib/motion";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { highlightCode } from "@/components/ui/MiniCode";
@@ -31,8 +30,9 @@ const MY_START = 9;
 const MY_END = 19;
 
 export function About() {
-  const t = useTranslations("about");
-  const zones = t.raw("zones") as Zone[];
+  const copy = { no: "04", title: "About me", p1: "I'm Hashem — a front-end engineer who builds fast, accessible interfaces with <hl>React</hl>, <hl>Next.js</hl> and <hl>TypeScript</hl>. I care about the part of software that outlives the sprint: <hl>feature-based architectures</hl>, <hl>design systems</hl> and <hl>monorepos</hl> that stay maintainable long after the demo.", p2: "I work <hl>async-first</hl> — written updates, PRs with context, and documentation treated as part of the job, not an afterthought. I work from Gaza, Palestine, and build for teams everywhere.", p3: "Away from the keyboard I'm usually deep in an engineering write-up or refining this site — currently exploring advanced React patterns and type-safe routing.", overlapTitle: "Timezone overlap — my day vs. yours", overlapCaption: "Full-day overlap with European teams · 3h+ with US East, every day", zones: [{ city: "Gaza — me", start: 9, end: 19, me: true }, { city: "Berlin · 9–17 CEST", start: 10, end: 18 }, { city: "London · 9–17 BST", start: 11, end: 19 }, { city: "New York · 9–17 EDT", start: 16, end: 24 }] };
+  const t: any = Object.assign((key: keyof typeof copy) => copy[key], { raw: (key: keyof typeof copy) => copy[key], rich: (key: "p1" | "p2" | "p3", { hl }: { hl: (chunks: string) => React.ReactNode }) => copy[key].split(/(<hl>.*?<\/hl>)/g).map((part, i) => { const match = part.match(/^<hl>(.*?)<\/hl>$/); return match ? <span key={i}>{hl(match[1])}</span> : part; }) });
+  const zones = copy.zones as Zone[];
 
   return (
     <section id="about" className="scroll-mt-20 px-5 py-20">
@@ -54,7 +54,7 @@ export function About() {
               className="text-pretty leading-relaxed text-muted md:text-lg"
             >
               {t.rich(key, {
-                hl: (chunks) => (
+                hl: (chunks: React.ReactNode) => (
                   <span className="font-medium text-accent">{chunks}</span>
                 ),
               })}

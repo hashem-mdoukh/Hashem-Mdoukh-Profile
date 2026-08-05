@@ -1,12 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
 import { GITHUB_URL, LINKEDIN_URL } from "@/lib/projects";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/SocialIcons";
 
 export function Footer() {
-  const t = useTranslations("footer");
+  const t = (key: string) => ({ rights: "All rights reserved.", note: "Designed & built by Hashem Mdoukh — Next.js 15 · Tailwind v4 · Framer Motion", place: "Built in Gaza, Palestine 🇵🇸" }[key] ?? "");
   const year = new Date().getFullYear();
 
   // easter egg for anyone who opens DevTools

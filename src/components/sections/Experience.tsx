@@ -2,7 +2,6 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
-import { useTranslations } from "next-intl";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
 interface Item {
@@ -24,7 +23,7 @@ function ExperienceCard({
   item: Item;
   index: number;
   total: number;
-  t: ReturnType<typeof useTranslations>;
+  t: (key: string) => string;
   shouldReduce: boolean | null;
 }) {
   const cardRef = useRef<HTMLLIElement>(null);
@@ -99,8 +98,12 @@ function ExperienceCard({
 }
 
 export function Experience() {
-  const t = useTranslations("experience");
-  const items = t.raw("items") as Item[];
+  const t = (key: string) => ({ no: "03", title: "Experience & training", resume: "View full résumé", "badges.professional": "Professional", "badges.training": "Intensive training" }[key] ?? "");
+  const items: Item[] = [
+    { org: "Advanced React Program", role: "Advanced React Developer Trainee", period: "Jan — Mar 2026", badge: "training", summary: "Engineered scalable React applications on a feature-based modular architecture inside a pnpm + Turborepo monorepo with shared Design System packages. Implemented fully type-safe routing with TanStack Router, server-state management with TanStack Query, and advanced patterns — Compound & Headless components, DIP with DTO mappers, and a Context-based feature-flag system for gradual rollouts.", tags: ["React", "TypeScript", "TanStack Query", "TanStack Router", "Turborepo", "pnpm"] },
+    { org: "Zakey Tech", role: "Full-Stack Developer Trainee", period: "Sep 2025 — Jan 2026", badge: "training", summary: "Built and shipped responsive full-stack apps with the Next.js App Router, Tailwind CSS v4 and MUI, backed by Node.js/Express REST services and MongoDB models via Mongoose.", tags: ["Next.js", "Node.js", "Express", "MongoDB", "Tailwind v4", "MUI"] },
+    { org: "Kumrat Al-Saada", role: "Front-End Developer (Angular)", period: "Apr — Jul 2025", badge: "professional", summary: "Architected an end-to-end notification system and redesigned multiple screens to a unified UX spec, defining an app-wide color and design-token system.", tags: ["Angular", "TypeScript", "Design Tokens", "Performance", "QA"] },
+  ];
   const shouldReduce = useReducedMotion();
 
   return (

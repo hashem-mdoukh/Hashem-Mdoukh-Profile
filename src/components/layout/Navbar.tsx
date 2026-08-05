@@ -8,7 +8,6 @@ import {
   useScroll,
   useSpring,
 } from "framer-motion";
-import { useTranslations } from "next-intl";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { GithubIcon } from "@/components/ui/SocialIcons";
 import { GITHUB_URL } from "@/lib/projects";
@@ -22,7 +21,7 @@ const NAV_ITEMS = [
 ] as const;
 
 export function Navbar() {
-  const t = useTranslations("nav");
+  const labels = { projects: "Projects", architecture: "Architecture", experience: "Experience", about: "About", contact: "Contact" };
   const [open, setOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -89,7 +88,7 @@ export function Navbar() {
                 >
                   {item.no}.
                 </span>
-                {t(item.key)}
+                {labels[item.key]}
               </a>
               {active === item.id && (
                 <motion.span
@@ -156,7 +155,7 @@ export function Navbar() {
                   className="block px-5 py-3.5 font-mono text-sm text-muted transition-colors hover:bg-surface hover:text-ink"
                 >
                   <span className="me-2 text-xs text-accent">{item.no}.</span>
-                  {t(item.key)}
+                  {labels[item.key]}
                 </a>
               </motion.li>
             ))}

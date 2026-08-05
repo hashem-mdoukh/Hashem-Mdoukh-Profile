@@ -2,13 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { useTranslations } from "next-intl";
 import { fadeUp, stagger } from "@/lib/motion";
 import { GITHUB_URL, LINKEDIN_URL } from "@/lib/projects";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/SocialIcons";
 
 export function Contact() {
-  const t = useTranslations("contact");
+  const t = (key: string) => ({ no: "05", kicker: "What's next?", title: "Let's build something.", body: "I'm looking for a remote front-end role with a team that cares about the details. My inbox is open — whether you have a role, a project, or just a question about something I built. Based in Gaza (UTC+3) — full-day overlap with European teams, mornings with US East.", email: "mr.mdoukh@gmail.com", copyHint: "Click to copy", copied: "Copied to clipboard", mailApp: "open in mail app", mailSubject: "Hi Hashem — saw your portfolio", statusOpen: "Open to remote roles", statusLocation: "Gaza, Palestine", statusReply: "replies < 24h", localTime: "local", cv: "Résumé" }[key] ?? "");
   const email = t("email");
   const [copied, setCopied] = useState(false);
   const resetTimer = useRef<ReturnType<typeof setTimeout>>(null);

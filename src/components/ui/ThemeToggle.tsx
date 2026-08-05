@@ -1,20 +1,18 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { useTranslations } from "next-intl";
 import { useTheme } from "@/components/theme/ThemeProvider";
 
 export function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
-  const t = useTranslations("theme");
   const isDark = theme === "dark";
 
   return (
     <button
       type="button"
       onClick={toggleTheme}
-      aria-label={t("toggle")}
-      title={isDark ? t("light") : t("dark")}
+      aria-label="Toggle theme"
+      title={isDark ? "Light" : "Dark"}
       className="grid size-9 place-items-center rounded-full border border-line bg-surface/60 text-ink transition-colors hover:border-brand-500 hover:text-accent"
     >
       <AnimatePresence mode="wait" initial={false}>

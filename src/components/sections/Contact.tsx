@@ -122,7 +122,7 @@ export function Contact() {
             className="text-muted transition-colors hover:text-accent">
             <LinkedinIcon />
           </a>
-          <a href="/Hashem_Mdoukh_Resume.pdf" target="_blank" rel="noreferrer"
+          <a href="/Hashem_Mdoukh_ATS.pdf" target="_blank" rel="noreferrer"
             className="font-mono text-sm text-muted transition-colors hover:text-accent">
             {t("cv")} ↗
           </a>

@@ -40,7 +40,7 @@ All copy lives in **`messages/en.json`** and **`messages/ar.json`** with identic
 Update both to keep the languages in sync. To wire your real projects, set the `live`
 and `repo` URLs under `projects.items` (currently `#` placeholders).
 
-Drop your CV at **`public/Hashem_Mdoukh_Resume.pdf`** to activate the "Download résumé" button.
+The résumé links use **`public/Hashem_Mdoukh_ATS.pdf`**.
 
 ## Project structure
 

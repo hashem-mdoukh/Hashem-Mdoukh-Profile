@@ -127,7 +127,7 @@ export function Hero() {
                         className="inline-flex items-center gap-1.5 text-[#c9d8d3] transition-colors hover:text-brand-300">
                         <LinkedinIcon size={14} /> linkedin ↗
                       </a>
-                      <a href="/Hashem_Mdoukh_Resume.pdf" target="_blank" rel="noreferrer"
+                      <a href="/Hashem_Mdoukh_ATS.pdf" target="_blank" rel="noreferrer"
                         className="text-[#c9d8d3] underline decoration-brand-500/50 underline-offset-4 transition-colors hover:text-brand-300">
                         {t("ctaResume")}
                       </a>

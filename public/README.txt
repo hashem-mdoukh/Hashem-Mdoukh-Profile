@@ -1,4 +1,4 @@
 Put static assets here.
 
-To activate the "Download résumé" button in the hero, add your CV as:
-  public/Hashem_Mdoukh_Resume.pdf
+The résumé links use this file:
+  public/Hashem_Mdoukh_ATS.pdf

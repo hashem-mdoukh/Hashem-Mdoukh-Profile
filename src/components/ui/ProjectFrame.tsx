@@ -61,7 +61,7 @@ export function ProjectFrame({
       </div>
 
       {/* snippet body */}
-      <pre className="relative overflow-x-auto p-5 font-mono text-[11.5px] md:text-[13px] leading-relaxed" dir="ltr">
+      <pre className="relative overflow-x-auto p-5 font-mono text-[10.5px] md:text-[13px] leading-relaxed" dir="ltr">
         <code>{children}</code>
       </pre>
     </div>

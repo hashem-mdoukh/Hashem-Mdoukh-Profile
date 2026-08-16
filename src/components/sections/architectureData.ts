@@ -38,6 +38,112 @@ export const tree: TreeRow[] = [
   { depth: 1, label: "pnpm-workspace.yaml", kind: "file" },
 ];
 
+/* ── Stack index ──────────────────────────────────────────────
+   The skim layer under the explorer. Two honest levels instead of
+   invented percentages, and every domain points at real proof. */
+
+export type StackLevel = "core" | "working";
+export type StackIcon = "layers" | "blocks" | "sync" | "server" | "tool";
+
+export interface StackDomain {
+  key: string;
+  no: string;
+  label: string;
+  claim: string;
+  icon: StackIcon;
+  /** grid span — first two tiles lead, the rest fill the row */
+  span: string;
+  items: { name: string; level: StackLevel }[];
+  evidence: string;
+  href: string;
+}
+
+export const stackDomains: StackDomain[] = [
+  {
+    key: "core",
+    no: "01",
+    label: "Core",
+    claim: "Interfaces built to survive their second year.",
+    icon: "layers",
+    span: "sm:col-span-2 lg:col-span-3",
+    items: [
+      { name: "React 19", level: "core" },
+      { name: "Next.js 15", level: "core" },
+      { name: "TypeScript", level: "core" },
+      { name: "Tailwind CSS v4", level: "core" },
+    ],
+    evidence: "Every project on this page ships on it",
+    href: "#projects",
+  },
+  {
+    key: "architecture",
+    no: "02",
+    label: "Architecture",
+    claim: "Structure decided before the first feature lands.",
+    icon: "blocks",
+    span: "sm:col-span-2 lg:col-span-3",
+    items: [
+      { name: "Turborepo", level: "core" },
+      { name: "pnpm workspaces", level: "core" },
+      { name: "Feature-based modules", level: "core" },
+      { name: "Design Systems", level: "core" },
+    ],
+    evidence: "Advanced React Program, 2026",
+    href: "#experience",
+  },
+  {
+    key: "data",
+    no: "03",
+    label: "Data",
+    claim: "Server state that stays in sync, and typed at the edge.",
+    icon: "sync",
+    span: "lg:col-span-2",
+    items: [
+      { name: "TanStack Query", level: "core" },
+      { name: "REST APIs", level: "core" },
+      { name: "DTO mapping", level: "core" },
+      { name: "TanStack Router", level: "working" },
+    ],
+    evidence: "Server state in 2 shipped apps",
+    href: "#projects",
+  },
+  {
+    key: "backend",
+    no: "04",
+    label: "Backend",
+    claim: "APIs I can own end to end, not just consume.",
+    icon: "server",
+    span: "lg:col-span-2",
+    items: [
+      { name: "Node.js", level: "core" },
+      { name: "Express.js", level: "core" },
+      { name: "MongoDB", level: "working" },
+      { name: "Mongoose", level: "working" },
+    ],
+    evidence: "Full-stack training at Zakey Tech",
+    href: "#experience",
+  },
+  {
+    key: "toolbelt",
+    no: "05",
+    label: "Toolbelt",
+    claim: "Shipped with these, ready to pick any of them back up.",
+    icon: "tool",
+    span: "sm:col-span-2 lg:col-span-2",
+    items: [
+      { name: "Angular", level: "core" },
+      { name: "Git", level: "core" },
+      { name: "Vite", level: "core" },
+      { name: "MUI", level: "working" },
+      { name: "Mantine UI", level: "working" },
+      { name: "Jotai", level: "working" },
+      { name: "CSS Modules", level: "working" },
+    ],
+    evidence: "Angular in production at Kumrat Al-Saada",
+    href: "#experience",
+  },
+];
+
 export const patternMeta: Record<
   PatternKey,
   { file: string; code: string; chips: string[] }

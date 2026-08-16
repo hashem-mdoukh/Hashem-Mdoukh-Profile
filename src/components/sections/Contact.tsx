@@ -34,7 +34,9 @@ export function Contact() {
       >
         <div
           aria-hidden
-          className="pointer-events-none absolute -top-24 left-1/2 size-96 -translate-x-1/2 rounded-full blur-3xl"
+          /* capped to the container: a fixed 384px circle overflowed the
+             section by 52px a side on a 320px screen */
+          className="pointer-events-none absolute -top-24 left-1/2 aspect-square w-full max-w-96 -translate-x-1/2 rounded-full blur-3xl"
           style={{ background: "radial-gradient(circle, var(--glow), transparent 70%)" }}
         />
 
@@ -76,7 +78,7 @@ export function Contact() {
           </p>
           <a
             href={`mailto:${email}?subject=${encodeURIComponent(t("mailSubject"))}`}
-            className="group/link inline-flex items-center gap-1.5 font-mono text-xs text-muted transition-colors hover:text-accent"
+            className="group/link inline-flex min-h-6 items-center gap-1.5 font-mono text-xs text-muted transition-colors hover:text-accent"
           >
             {t("mailApp")}
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -114,15 +116,15 @@ export function Contact() {
           className="relative mt-8 flex items-center justify-center gap-6"
         >
           <a href={GITHUB_URL} target="_blank" rel="noreferrer" aria-label="GitHub"
-            className="text-muted transition-colors hover:text-accent">
+            className="inline-flex size-6 items-center justify-center text-muted transition-colors hover:text-accent">
             <GithubIcon />
           </a>
           <a href={LINKEDIN_URL} target="_blank" rel="noreferrer" aria-label="LinkedIn"
-            className="text-muted transition-colors hover:text-accent">
+            className="inline-flex size-6 items-center justify-center text-muted transition-colors hover:text-accent">
             <LinkedinIcon />
           </a>
           <a href="/Hashem_Mdoukh_ATS.pdf" target="_blank" rel="noreferrer"
-            className="font-mono text-sm text-muted transition-colors hover:text-accent">
+            className="inline-flex min-h-6 items-center font-mono text-sm text-muted transition-colors hover:text-accent">
             {t("cv")} ↗
           </a>
         </motion.div>

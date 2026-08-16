@@ -53,8 +53,8 @@ export function Navbar() {
 
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
         {/* <hm /> mark + terminal-path name */}
-        <a href="#top" className="group/logo flex items-baseline gap-3">
-          <span className="font-mono text-lg font-bold tracking-tight text-ink">
+        <a href="#top" className="group/logo flex shrink-0 items-baseline gap-3">
+          <span className="whitespace-nowrap font-mono text-lg font-bold tracking-tight text-ink">
             <span className="text-accent transition-transform">&lt;</span>
             hm
             <span className="text-accent">
@@ -62,7 +62,10 @@ export function Navbar() {
               /&gt;
             </span>
           </span>
-          <span className="hidden items-baseline font-mono text-sm text-muted transition-colors group-hover/logo:text-ink sm:inline-flex">
+          {/* hidden between md and lg: the desktop nav appears at md and the
+              two together overflow the bar, which squeezed the logo onto
+              two lines */}
+          <span className="hidden items-baseline font-mono text-sm text-muted transition-colors group-hover/logo:text-ink sm:inline-flex md:hidden lg:inline-flex">
             hashem<span className="text-accent">-</span>mdoukh
             <span
               aria-hidden
@@ -71,13 +74,16 @@ export function Navbar() {
           </span>
         </a>
 
-        <ul className="hidden items-center gap-6 md:flex">
+        <ul className="hidden items-center gap-5 md:flex lg:gap-6">
           {NAV_ITEMS.map((item) => (
             <li key={item.key} className="relative">
               <a
                 href={item.href}
                 aria-current={active === item.id ? "true" : undefined}
-                className={`font-mono text-[13px] transition-colors hover:text-ink ${
+                /* padding on an inline link grows the hit area to the 24px
+                   minimum without changing the line box, so the active
+                   underline stays put */
+                className={`py-1.5 font-mono text-[13px] transition-colors hover:text-ink ${
                   active === item.id ? "text-ink" : "text-muted"
                 }`}
               >

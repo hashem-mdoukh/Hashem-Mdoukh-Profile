@@ -45,7 +45,7 @@ export function Footer() {
             target="_blank"
             rel="noreferrer"
             aria-label="GitHub"
-            className="text-muted transition-colors hover:text-accent"
+            className="inline-flex size-6 items-center justify-center text-muted transition-colors hover:text-accent"
           >
             <GithubIcon />
           </a>
@@ -54,7 +54,7 @@ export function Footer() {
             target="_blank"
             rel="noreferrer"
             aria-label="LinkedIn"
-            className="text-muted transition-colors hover:text-accent"
+            className="inline-flex size-6 items-center justify-center text-muted transition-colors hover:text-accent"
           >
             <LinkedinIcon />
           </a>
@@ -69,7 +69,7 @@ export function Footer() {
               href={GITHUB_URL}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-1.5 transition-colors hover:text-brand-300"
+              className="inline-flex min-h-6 items-center gap-1.5 transition-colors hover:text-brand-300"
             >
               <BranchIcon /> main
             </a>

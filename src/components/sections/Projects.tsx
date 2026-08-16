@@ -83,7 +83,7 @@ export function Projects() {
                     href={primaryLink}
                     target="_blank"
                     rel="noreferrer"
-                    className="group/link inline-flex max-w-full items-center gap-2 break-words transition-colors hover:text-accent"
+                    className="group/link inline-flex max-w-full items-center gap-2 wrap-break-word transition-colors hover:text-accent"
                   >
                     {t.items[project.key as keyof typeof t.items].name}
                     <ArrowUpRight />
@@ -121,7 +121,7 @@ export function Projects() {
                       href={project.live}
                       target="_blank"
                       rel="noreferrer"
-                      className="group/link inline-flex items-center gap-1.5 text-sm font-semibold text-ink transition-colors hover:text-accent"
+                      className="group/link inline-flex min-h-6 items-center gap-1.5 text-sm font-semibold text-ink transition-colors hover:text-accent"
                     >
                       {t.live} <ArrowUpRight />
                     </a>
@@ -130,7 +130,7 @@ export function Projects() {
                     href={project.repo}
                     target="_blank"
                     rel="noreferrer"
-                    className="group/link inline-flex items-center gap-1.5 text-sm font-semibold text-muted transition-colors hover:text-accent"
+                    className="group/link inline-flex min-h-6 items-center gap-1.5 text-sm font-semibold text-muted transition-colors hover:text-accent"
                   >
                     <CodeIcon /> {t.code}
                   </a>
@@ -152,7 +152,7 @@ export function Projects() {
           href={GITHUB_URL}
           target="_blank"
           rel="noreferrer"
-          className="group/link inline-flex items-center gap-1.5 font-mono text-[10px] text-accent transition-opacity hover:opacity-80"
+          className="group/link inline-flex min-h-6 items-center gap-1.5 font-mono text-[10px] text-accent transition-opacity hover:opacity-80"
         >
           {t.more} <ArrowUpRight />
         </a>

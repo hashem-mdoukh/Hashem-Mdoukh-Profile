@@ -95,7 +95,7 @@ export function About() {
 
               <a
                 href="#contact"
-                className="mt-4 inline-flex items-center gap-2 font-mono text-xs text-brand-300 transition-opacity hover:opacity-80"
+                className="mt-4 inline-flex min-h-6 items-center gap-2 font-mono text-xs text-brand-300 transition-opacity hover:opacity-80"
               >
                 <span className="relative flex size-2" aria-hidden>
                   <span className="absolute inline-flex size-full animate-ping rounded-full bg-brand-400 opacity-60 motion-reduce:animate-none" />

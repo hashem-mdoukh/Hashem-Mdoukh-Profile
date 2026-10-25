@@ -10,7 +10,7 @@ export interface ProjectMeta {
 }
 
 export const GITHUB_URL = "https://github.com/hashem-mdoukh";
-export const LINKEDIN_URL = "https://linkedin.com/in/hashem-mdoukh";
+export const LINKEDIN_URL = "https://www.linkedin.com/in/hashem-mdoukh-82a410371/";
 
 export const projects: ProjectMeta[] = [
   {

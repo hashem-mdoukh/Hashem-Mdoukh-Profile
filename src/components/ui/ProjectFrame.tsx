@@ -2,17 +2,13 @@
 
 import { useRef, type ReactNode } from "react";
 
-/**
- * Code-editor style cover: macOS chrome bar with the project's real
- * filename, a short syntax-highlighted snippet, and a cursor-tracked
- * emerald spotlight. Mouse position is written straight to CSS vars
- * (no state, no re-renders).
- */
 export function ProjectFrame({
   filename,
+  overlapSide,
   children,
 }: {
   filename: string;
+  overlapSide?: "left" | "right";
   children: ReactNode;
 }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -61,7 +57,12 @@ export function ProjectFrame({
       </div>
 
       {/* snippet body */}
-      <pre className="relative overflow-x-auto p-5 font-mono text-[10.5px] md:text-[13px] leading-relaxed" dir="ltr">
+      <pre
+        className={`relative overflow-x-auto p-5 font-mono text-[10.5px] md:text-[13px] leading-relaxed ${
+          overlapSide === "left" ? "lg:pl-21" : overlapSide === "right" ? "lg:pr-32" : ""
+        }`}
+        dir="ltr"
+      >
         <code>{children}</code>
       </pre>
     </div>

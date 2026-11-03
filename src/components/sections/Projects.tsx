@@ -53,7 +53,10 @@ export function Projects() {
                 variants={frameReveal(!flipped)}
                 className="w-full min-w-0 shrink-0 lg:w-[60%]"
               >
-                <ProjectFrame filename={snippet.filename}>
+                <ProjectFrame
+                  filename={snippet.filename}
+                  overlapSide={flipped ? "left" : "right"}
+                >
                   {snippet.code}
                 </ProjectFrame>
               </motion.div>

@@ -19,20 +19,27 @@ export function Hero() {
   const t = (key: string) => ({ terminalTitle: "hashem@gaza — zsh", prompt: "❯", cmd: "npx hashem@latest", name: "Hashem Mdoukh", role: "Front-End Engineer — React · Next.js · TypeScript", tagline: "Fast, scalable, accessible web apps — feature-based architectures & design systems.", statusKey: "status", statusVal: "open to remote & international roles", locationKey: "location", locationVal: "Gaza, Palestine (UTC+2/3) · async-first", linksKey: "links", ctaPrimary: "./view-projects", ctaSecondary: "./contact-me", ctaResume: "resume.pdf", skip: "click to skip ↵" }[key] ?? "");
   const shouldReduce = useReducedMotion();
   const [done, setDone] = useState(false);
+  const [typing, setTyping] = useState(false);
 
-  // reduced motion or repeat visit this session → skip straight to the end state
   useEffect(() => {
-    if (shouldReduce || sessionStorage.getItem("heroPlayed")) setDone(true);
+    if (shouldReduce) {
+      setDone(true);
+      return;
+    }
+    if (window.__splashDone) {
+      setTyping(true);
+      return;
+    }
+    const start = () => setTyping(true);
+    window.addEventListener("splashdone", start, { once: true });
+    const fallback = setTimeout(start, 4000);
+    return () => {
+      window.removeEventListener("splashdone", start);
+      clearTimeout(fallback);
+    };
   }, [shouldReduce]);
 
-  const finish = useCallback(() => {
-    setDone(true);
-    try {
-      sessionStorage.setItem("heroPlayed", "1");
-    } catch {
-      /* storage may be unavailable */
-    }
-  }, []);
+  const finish = useCallback(() => setDone(true), []);
 
   return (
     <section id="top" className="relative overflow-hidden px-5 pt-24 pb-20 sm:pt-32 sm:pb-24">
@@ -43,12 +50,9 @@ export function Hero() {
         style={{ background: "radial-gradient(circle, var(--glow), transparent 70%)" }}
       />
 
-      <motion.div
-        initial={{ opacity: 0.4, y: 12, scale: 0.985 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
-        className="relative mx-auto max-w-3xl"
-      >
+      {/* the window chrome is static and solid from first paint — only its
+          contents load in */}
+      <div className="relative mx-auto max-w-3xl">
         {/* crawler/AT text, complete from the first byte */}
         <h1 className="sr-only">
           {t("name")} — {t("role")}. {t("tagline")}
@@ -68,7 +72,7 @@ export function Hero() {
             <span className="size-3 rounded-full bg-[#febc2e]/70" aria-hidden />
             <span className="size-3 rounded-full bg-brand-500/80" aria-hidden />
             <span className="ms-3 font-mono text-xs text-[#7d938b]">{t("terminalTitle")}</span>
-            {!done && (
+            {typing && !done && (
               <span className="ms-auto hidden font-mono text-[11px] text-white/20 sm:inline">
                 {t("skip")}
               </span>
@@ -80,6 +84,7 @@ export function Hero() {
             <TypedCommand
               prompt={t("prompt")}
               command={t("cmd")}
+              started={typing}
               instant={done}
               onDone={finish}
             />
@@ -158,7 +163,7 @@ export function Hero() {
             )}
           </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }
@@ -179,11 +184,14 @@ function OutputRow({ k, children }: { k: string; children: React.ReactNode }) {
 function TypedCommand({
   prompt,
   command,
+  started,
   instant,
   onDone,
 }: {
   prompt: string;
   command: string;
+  /** false until the boot overlay lifts — the caret idles until then */
+  started: boolean;
   instant: boolean;
   onDone: () => void;
 }) {
@@ -192,7 +200,7 @@ function TypedCommand({
   doneRef.current = onDone;
 
   useEffect(() => {
-    if (instant) return;
+    if (instant || !started) return;
     if (count >= command.length) {
       const id = setTimeout(() => doneRef.current(), 300);
       return () => clearTimeout(id);
@@ -203,7 +211,7 @@ function TypedCommand({
     if ("@./-".includes(command[count] ?? "")) delay += 60;
     const id = setTimeout(() => setCount((c) => c + 1), delay);
     return () => clearTimeout(id);
-  }, [instant, count, command]);
+  }, [instant, started, count, command]);
 
   return (
     <p className="text-[#c9d8d3]">

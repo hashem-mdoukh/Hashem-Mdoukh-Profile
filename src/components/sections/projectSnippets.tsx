@@ -6,6 +6,102 @@ import { Kw, Fn, Str, Type, Num, Cm, Base, tok } from "@/components/ui/ProjectFr
  * cover — mirroring the real implementation highlights of each repo.
  */
 export const projectSnippets: Record<string, { filename: string; code: ReactNode }> = {
+  resumax: {
+    filename: "pdf/puppeteer-resume-pdf.generator.ts",
+    code: (
+      <span className={tok.base}>
+        <Kw>class</Kw> <Type>ConcurrencyGate</Type> <span className={tok.punc}>{"{"}</span>
+        {"\n  "}
+        <Kw>async</Kw> <Fn>run</Fn>
+        <span className={tok.punc}>&lt;</span>
+        <Type>T</Type>
+        <span className={tok.punc}>&gt;(</span>op<span className={tok.punc}>: () =&gt;</span>{" "}
+        <Type>Promise</Type>
+        <span className={tok.punc}>&lt;</span>
+        <Type>T</Type>
+        <span className={tok.punc}>&gt;)</span> <span className={tok.punc}>{"{"}</span>
+        {"\n    "}
+        <Kw>if</Kw> <span className={tok.punc}>(</span>
+        <Kw>this</Kw>
+        <span className={tok.punc}>.</span>active <span className={tok.punc}>&gt;=</span>{" "}
+        <Kw>this</Kw>
+        <span className={tok.punc}>.</span>limit<span className={tok.punc}>)</span>{" "}
+        <Cm>{"// cap parallel PDF renders"}</Cm>
+        {"\n      "}
+        <Kw>await new</Kw> <Type>Promise</Type>
+        <span className={tok.punc}>((</span>r<span className={tok.punc}>) =&gt;</span>{" "}
+        <Kw>this</Kw>
+        <span className={tok.punc}>.</span>waiting<span className={tok.punc}>.</span>
+        <Fn>push</Fn>
+        <span className={tok.punc}>(</span>r<span className={tok.punc}>));</span>
+        {"\n    "}
+        <Kw>this</Kw>
+        <span className={tok.punc}>.</span>active <span className={tok.punc}>+=</span>{" "}
+        <Num>1</Num>
+        <span className={tok.punc}>;</span>
+        {"\n    "}
+        <Kw>try</Kw> <span className={tok.punc}>{"{"}</span> <Kw>return await</Kw>{" "}
+        <Fn>op</Fn>
+        <span className={tok.punc}>(); {"}"}</span>
+        {"\n    "}
+        <Kw>finally</Kw> <span className={tok.punc}>{"{"}</span> <Kw>this</Kw>
+        <span className={tok.punc}>.</span>active <span className={tok.punc}>-=</span>{" "}
+        <Num>1</Num>
+        <span className={tok.punc}>;</span> <Kw>this</Kw>
+        <span className={tok.punc}>.</span>waiting<span className={tok.punc}>.</span>
+        <Fn>shift</Fn>
+        <span className={tok.punc}>()?.(); {"}"}</span>
+        {"\n  "}
+        <span className={tok.punc}>{"}"}</span>
+        {"\n"}
+        <span className={tok.punc}>{"}"}</span>
+      </span>
+    ),
+  },
+
+  imagine: {
+    filename: "chrome/OrbitNav.tsx",
+    code: (
+      <span className={tok.base}>
+        <Cm>{"// the logo's ring is the progress bar"}</Cm>
+        {"\n"}
+        <Kw>const</Kw> <span className={tok.punc}>{"{"}</span> scrollYProgress{" "}
+        <span className={tok.punc}>{"}"}</span> <span className={tok.punc}>=</span>{" "}
+        <Fn>useScroll</Fn>
+        <span className={tok.punc}>();</span>
+        {"\n"}
+        <Kw>const</Kw> progress <span className={tok.punc}>=</span> <Fn>useSpring</Fn>
+        <span className={tok.punc}>(</span>scrollYProgress<span className={tok.punc}>,</span>{" "}
+        <span className={tok.punc}>{"{"}</span>
+        {"\n  "}stiffness<span className={tok.punc}>:</span> <Num>120</Num>
+        <span className={tok.punc}>,</span> damping<span className={tok.punc}>:</span>{" "}
+        <Num>28</Num>
+        <span className={tok.punc}>,</span> mass<span className={tok.punc}>:</span>{" "}
+        <Num>0.4</Num>
+        <span className={tok.punc}>,</span>
+        {"\n"}
+        <span className={tok.punc}>{"}"});</span>
+        {"\n\n"}
+        <Kw>const</Kw> dash <span className={tok.punc}>=</span> <Fn>useTransform</Fn>
+        <span className={tok.punc}>(</span>progress<span className={tok.punc}>,</span>{" "}
+        <span className={tok.punc}>(</span>p<span className={tok.punc}>) =&gt;</span>
+        {"\n  "}
+        <Str>{"`${p * CIRC} ${CIRC}`"}</Str>
+        <span className={tok.punc}>);</span> <Cm>{"// gold arc fills"}</Cm>
+        {"\n"}
+        <Kw>const</Kw> angle <span className={tok.punc}>=</span> <Fn>useTransform</Fn>
+        <span className={tok.punc}>(</span>progress<span className={tok.punc}>,</span>{" "}
+        <span className={tok.punc}>[</span>
+        <Num>0</Num>
+        <span className={tok.punc}>,</span> <Num>1</Num>
+        <span className={tok.punc}>],</span> <span className={tok.punc}>[</span>
+        <Num>0</Num>
+        <span className={tok.punc}>,</span> <Num>360</Num>
+        <span className={tok.punc}>]);</span>
+      </span>
+    ),
+  },
+
   rickmorty: {
     filename: "useQueries.ts",
     code: (
@@ -73,68 +169,6 @@ export const projectSnippets: Record<string, { filename: string; code: ReactNode
         <Kw>return</Kw> <Fn>toUnit</Fn>
         <span className={tok.punc}>(</span>data<span className={tok.punc}>,</span> unit
         <span className={tok.punc}>);</span> <Cm>{"// K → °C/°F"}</Cm>
-        {"\n"}
-        <span className={tok.punc}>{"}"}</span>
-      </span>
-    ),
-  },
-
-  transportation: {
-    filename: "app/api/buses/route.ts",
-    code: (
-      <span className={tok.base}>
-        <Kw>export async function</Kw> <Fn>GET</Fn>
-        <span className={tok.punc}>()</span> <span className={tok.punc}>{"{"}</span>
-        {"\n  "}
-        <Kw>const</Kw> buses<span className={tok.punc}>:</span> <Type>Bus</Type>
-        <span className={tok.punc}>[]</span> <span className={tok.punc}>=</span>{" "}
-        <Kw>await</Kw> <Fn>getLiveBuses</Fn>
-        <span className={tok.punc}>();</span>
-        {"\n\n  "}
-        <Kw>return</Kw> NextResponse<span className={tok.punc}>.</span>
-        <Fn>json</Fn>
-        <span className={tok.punc}>({"{"}</span>
-        {"\n    "}buses<span className={tok.punc}>,</span>{" "}
-        <Cm>{"// live positions → Leaflet map"}</Cm>
-        {"\n    "}updatedAt<span className={tok.punc}>:</span> Date
-        <span className={tok.punc}>.</span>
-        <Fn>now</Fn>
-        <span className={tok.punc}>(),</span>
-        {"\n  "}
-        <span className={tok.punc}>{"}"});</span>
-        {"\n"}
-        <span className={tok.punc}>{"}"}</span>
-      </span>
-    ),
-  },
-
-  financial: {
-    filename: "services/api.ts",
-    code: (
-      <span className={tok.base}>
-        <Kw>export async function</Kw> <Fn>getCauses</Fn>
-        <span className={tok.punc}>():</span> <Type>Promise</Type>
-        <span className={tok.punc}>&lt;</span>
-        <Type>Cause</Type>
-        <span className={tok.punc}>[]&gt;</span> <span className={tok.punc}>{"{"}</span>
-        {"\n  "}
-        <Kw>const</Kw> res <span className={tok.punc}>=</span> <Kw>await</Kw>{" "}
-        <Fn>fetch</Fn>
-        <span className={tok.punc}>(</span>
-        <Str>{"`${API_URL}/causes`"}</Str>
-        <span className={tok.punc}>);</span>
-        {"\n  "}
-        <Kw>const</Kw> dto<span className={tok.punc}>:</span> <Type>CauseDto</Type>
-        <span className={tok.punc}>[]</span> <span className={tok.punc}>=</span>{" "}
-        <Kw>await</Kw> res<span className={tok.punc}>.</span>
-        <Fn>json</Fn>
-        <span className={tok.punc}>();</span>
-        {"\n\n  "}
-        <Kw>return</Kw> dto<span className={tok.punc}>.</span>
-        <Fn>map</Fn>
-        <span className={tok.punc}>(</span>
-        <Base>toCause</Base>
-        <span className={tok.punc}>);</span> <Cm>{"// DTO → domain"}</Cm>
         {"\n"}
         <span className={tok.punc}>{"}"}</span>
       </span>
